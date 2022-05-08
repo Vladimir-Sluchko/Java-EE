@@ -64,7 +64,7 @@ public class AirportPoolDao implements IAirportDao {
                              "    timezone\n" +
                              "FROM\n" +
                              "    bookings.airports\n" +
-                             "WHERE airport_code = '" + code + "';"
+                             "WHERE airport_code = '" + code + "';"  /// ИСПРАВИТЬ ЗАПРОСеш
              );
         ) {
             while (resultSet.next()){

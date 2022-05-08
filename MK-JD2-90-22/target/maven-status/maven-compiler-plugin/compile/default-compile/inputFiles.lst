@@ -61,6 +61,7 @@
 /Users/kristinaslucko/Documents/Java/Git/Java-EE/MK-JD2-90-22/src/main/java/by/it_academy/jd2/MK_JD2_90_22/vote/service/cookieAndSession/SetCookiesService.java
 /Users/kristinaslucko/Documents/Java/Git/Java-EE/MK-JD2-90-22/src/main/java/by/it_academy/jd2/MK_JD2_90_22/vote/airoportsinfo/service/api/IAirportService.java
 /Users/kristinaslucko/Documents/Java/Git/Java-EE/MK-JD2-90-22/src/main/java/by/it_academy/jd2/MK_JD2_90_22/vote/airoportsinfo/dao/api/IFlightsFilter.java
+/Users/kristinaslucko/Documents/Java/Git/Java-EE/MK-JD2-90-22/src/main/java/by/it_academy/jd2/MK_JD2_90_22/vote/airoportsinfo/dao/Page.java
 /Users/kristinaslucko/Documents/Java/Git/Java-EE/MK-JD2-90-22/src/main/java/by/it_academy/jd2/MK_JD2_90_22/vote/airoportsinfo/dao/AirportPoolDao2.java
 /Users/kristinaslucko/Documents/Java/Git/Java-EE/MK-JD2-90-22/src/main/java/by/it_academy/jd2/MK_JD2_90_22/vote/servlets/cookieAndSession/GetCookiesServlet.java
 /Users/kristinaslucko/Documents/Java/Git/Java-EE/MK-JD2-90-22/src/main/java/by/it_academy/jd2/MK_JD2_90_22/vote/servlets/cookieAndSession/SetSessionServlet.java
@@ -69,6 +70,7 @@
 /Users/kristinaslucko/Documents/Java/Git/Java-EE/MK-JD2-90-22/src/main/java/by/it_academy/jd2/MK_JD2_90_22/vote/homeWork/core/dto/User.java
 /Users/kristinaslucko/Documents/Java/Git/Java-EE/MK-JD2-90-22/src/main/java/by/it_academy/jd2/MK_JD2_90_22/vote/aviasailes/main/Main5.java
 /Users/kristinaslucko/Documents/Java/Git/Java-EE/MK-JD2-90-22/src/main/java/by/it_academy/jd2/MK_JD2_90_22/vote/jsp/servlets/HelloServlet.java
+/Users/kristinaslucko/Documents/Java/Git/Java-EE/MK-JD2-90-22/src/main/java/by/it_academy/jd2/MK_JD2_90_22/vote/airoportsinfo/dao/ConnectionBase.java
 /Users/kristinaslucko/Documents/Java/Git/Java-EE/MK-JD2-90-22/src/main/java/by/it_academy/jd2/MK_JD2_90_22/vote/airoportsinfo/dao/api/IParametr.java
 /Users/kristinaslucko/Documents/Java/Git/Java-EE/MK-JD2-90-22/src/main/java/by/it_academy/jd2/MK_JD2_90_22/vote/service/singleton/GenrySingleton.java
 /Users/kristinaslucko/Documents/Java/Git/Java-EE/MK-JD2-90-22/src/main/java/by/it_academy/jd2/MK_JD2_90_22/vote/aviasailes/dao/Airport.java

@@ -7,26 +7,31 @@ import by.it_academy.jd2.MK_JD2_90_22.vote.airoportsinfo.service.api.IAirportSer
 import java.util.List;
 
 public class AirportService implements IAirportService {
-    private static String sort = "ASC";
+    private static final IAirportService instance = new AirportService();
+    private  String sort;
 
+    private final IAirport dao;
+
+    private AirportService() {
+        this.dao = AirportPoolDao2.getInstance();
+    }
 
     public List<AirportInfo> getAll() {
-        List<AirportInfo> airportList;
-        try (IAirport airportPoolDao = new AirportPoolDao2();) {
-            airportList = airportPoolDao.getAll(getSort());
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
-        return airportList;
+        return this.dao.getAll(getSort());
     }
 
     @Override
     public void setSort(String str) {
+        /*if (sort.isEmpty()){
+            sort = "ASC";
+        }*/
         sort = str;
     }
 
     public String getSort(){
         return sort;
+    }
+    public static IAirportService getInstance(){
+        return instance;
     }
 }

@@ -41,6 +41,7 @@ by/it_academy/jd2/MK_JD2_90_22/vote/airoportsinfo/dao/dto/Flights.class
 by/it_academy/jd2/MK_JD2_90_22/vote/aviasailes/dao/Airport.class
 by/it_academy/jd2/MK_JD2_90_22/vote/servlets/singletone/ArtistServletSingletonCookie.class
 by/it_academy/jd2/MK_JD2_90_22/vote/servlets/cookieAndSession/DeleteCookiesServlet.class
+by/it_academy/jd2/MK_JD2_90_22/vote/airoportsinfo/dao/ConnectionBase.class
 by/it_academy/jd2/MK_JD2_90_22/vote/aviasailes/main/Main3.class
 by/it_academy/jd2/MK_JD2_90_22/vote/service/singleton/VoteSingleton.class
 by/it_academy/jd2/MK_JD2_90_22/vote/servlets/cookieAndSession/SetCookiesServlet.class
@@ -75,3 +76,4 @@ by/it_academy/jd2/MK_JD2_90_22/vote/airoportsinfo/service/FlightsService.class
 by/it_academy/jd2/MK_JD2_90_22/vote/servlets/voteServlet/GenresServlet.class
 by/it_academy/jd2/MK_JD2_90_22/vote/airoportsinfo/dao/api/IAirport.class
 by/it_academy/jd2/MK_JD2_90_22/vote/servlets/voteServlet/TopGenreServlet.class
+by/it_academy/jd2/MK_JD2_90_22/vote/airoportsinfo/dao/Page.class

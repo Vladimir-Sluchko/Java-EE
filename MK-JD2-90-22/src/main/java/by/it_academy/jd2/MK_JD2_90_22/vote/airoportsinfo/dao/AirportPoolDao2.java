@@ -2,21 +2,31 @@ package by.it_academy.jd2.MK_JD2_90_22.vote.airoportsinfo.dao;
 
 import by.it_academy.jd2.MK_JD2_90_22.vote.airoportsinfo.dao.api.IAirport;
 import by.it_academy.jd2.MK_JD2_90_22.vote.airoportsinfo.dao.dto.AirportInfo;
+import by.it_academy.jd2.MK_JD2_90_22.vote.aviasailes.dao.Airport;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import com.mchange.v2.c3p0.DataSources;
 import javax.sql.DataSource;
 import java.beans.PropertyVetoException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class AirportPoolDao2 implements IAirport {
-    private DataSource ds;
+    private static final String QUERY = "SELECT\n" +
+            "    airport_code,\n" +
+            "    airport_name,\n" +
+            "    city,\n" +
+            "    coordinates,\n" +
+            "    timezone\n" +
+            "FROM\n" +
+            "    bookings.airports\n";
+    private static final AirportPoolDao2 instance = new AirportPoolDao2();
+    private AirportPoolDao2(){
 
-    public AirportPoolDao2() {
+    }
+    //private final DataSource ds;
+
+    /*public AirportPoolDao2() {
         ComboPooledDataSource pool = new ComboPooledDataSource();
         try {
             pool.setDriverClass("org.postgresql.Driver");
@@ -28,28 +38,25 @@ public class AirportPoolDao2 implements IAirport {
         pool.setPassword("postgres");
 
         this.ds = pool;
-    }
+    }*/
 
     public List<AirportInfo> getAll(String sort){
         List<AirportInfo> airports = new ArrayList<>();
+        String orderBy = "";
+        if (sort == null){
+            sort = "";
+        }
+        if (sort.length() > 0){
+            orderBy = "ORDER BY city " + sort + ";";
+        }
 
-        try (Connection connection = getConnection();
-             Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery(
-                     "SELECT\n" +
-                             "    ml.airport_code,\n" +
-                             "    ml.airport_name ->> lang () AS airport_name,\n" +
-                             "    ml.city ->> lang () AS city,\n" +
-                             "    ml.coordinates,\n" +
-                             "    ml.timezone\n" +
-                             "FROM\n" +
-                             "    airports_data ml\n" +
-                             "ORDER BY\n" +
-                             "    city " + sort + ";"
-             );
-        ) {
-            while (resultSet.next()){
-                airports.add(map(resultSet));
+        try (Connection connection = ConnectionBase.getConnection();
+             PreparedStatement statement = connection.prepareStatement(QUERY + orderBy);
+             ) {
+            try (ResultSet resultSet = statement.executeQuery();) {
+                while (resultSet.next()) {
+                    airports.add(map(resultSet));
+                }
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -58,9 +65,9 @@ public class AirportPoolDao2 implements IAirport {
     }
 
 
-    private Connection getConnection() throws SQLException {
+    /*private Connection getConnection() throws SQLException {
         return this.ds.getConnection();
-    }
+    }*/
 
     private AirportInfo map(ResultSet rs) throws SQLException {
         return new AirportInfo(
@@ -74,6 +81,9 @@ public class AirportPoolDao2 implements IAirport {
 
     @Override
     public void close() throws Exception {
-        DataSources.destroy(this.ds);
+        ConnectionBase.close();
+    }
+    public static AirportPoolDao2 getInstance(){
+        return instance;
     }
 }

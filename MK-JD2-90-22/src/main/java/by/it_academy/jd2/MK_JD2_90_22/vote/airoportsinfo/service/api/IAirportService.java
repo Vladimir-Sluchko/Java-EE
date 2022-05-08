@@ -9,6 +9,6 @@ public interface IAirportService {
 
     void setSort(String str);
 
-    String getSort();
+
 
 }

@@ -17,7 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FlightsPoolDao implements IFlights {
-    private DataSource ds;
+    //private static IFlights instance = new FlightsPoolDao();
+    private final DataSource ds;
 
     public FlightsPoolDao() {
         ComboPooledDataSource pool = new ComboPooledDataSource();
@@ -109,6 +110,8 @@ public class FlightsPoolDao implements IFlights {
             }
             if (!where.isEmpty()) {
                 sqlScript += "\n WHERE " + where;
+            }else {
+
             }
         }
 

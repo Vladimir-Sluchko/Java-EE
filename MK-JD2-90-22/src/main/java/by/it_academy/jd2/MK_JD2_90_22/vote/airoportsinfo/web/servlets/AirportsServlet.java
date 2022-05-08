@@ -18,7 +18,7 @@ public class AirportsServlet extends HttpServlet {
     IAirportService service;
 
     public AirportsServlet() {
-        this.service = new AirportService();
+        this.service = AirportService.getInstance();
     }
 
     @Override
