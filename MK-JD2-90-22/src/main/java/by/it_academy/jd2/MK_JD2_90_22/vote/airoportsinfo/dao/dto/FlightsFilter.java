@@ -3,12 +3,12 @@ package by.it_academy.jd2.MK_JD2_90_22.vote.airoportsinfo.dao.dto;
 import java.time.LocalDateTime;
 
 public class FlightsFilter {
-    private LocalDateTime scheduledDeparture;
-    private String departureAirport;
-    private LocalDateTime scheduledArrival;
-    private String arrivalAirport;
+    private final LocalDateTime scheduledDeparture;
+    private final String departureAirport;
+    private final LocalDateTime scheduledArrival;
+    private final String arrivalAirport;
 
-    public FlightsFilter(LocalDateTime scheduledDeparture,
+     private FlightsFilter(LocalDateTime scheduledDeparture,
                          String departureAirport,
                          LocalDateTime scheduledArrival,
                          String arrivalAirport) {
@@ -22,32 +22,16 @@ public class FlightsFilter {
         return scheduledDeparture;
     }
 
-    public void setScheduledDeparture(LocalDateTime scheduledDeparture) {
-        this.scheduledDeparture = scheduledDeparture;
-    }
-
     public String getDepartureAirport() {
         return departureAirport;
-    }
-
-    public void setDepartureAirport(String departureAirport) {
-        this.departureAirport = departureAirport;
     }
 
     public LocalDateTime getScheduledArrival() {
         return scheduledArrival;
     }
 
-    public void setScheduledArrival(LocalDateTime scheduledArrival) {
-        this.scheduledArrival = scheduledArrival;
-    }
-
     public String getArrivalAirport() {
         return arrivalAirport;
-    }
-
-    public void setArrivalAirport(String arrivalAirport) {
-        this.arrivalAirport = arrivalAirport;
     }
 
     public static class Builder {
@@ -59,9 +43,7 @@ public class FlightsFilter {
         private Builder() {
         }
 
-        public static Builder builder(){
-            return new Builder();
-        }
+
 
         public Builder setScheduledDeparture(LocalDateTime scheduledDeparture) {
             this.scheduledDeparture = scheduledDeparture;
@@ -84,7 +66,9 @@ public class FlightsFilter {
         }
 
 
-
+        public static Builder creat(){
+            return new Builder();
+        }
         public FlightsFilter build() {
             return new FlightsFilter(scheduledDeparture,departureAirport,scheduledArrival,arrivalAirport);
         }

@@ -18,7 +18,7 @@ import java.util.List;
 
 @WebServlet(name = "FlightsServlet", urlPatterns = "/flights")
 public class FlightsServlet extends HttpServlet {
-    IFlightsFilterService flightsFilterService;
+   /* IFlightsFilterService flightsFilterService;
     IFlightsService flightsService;
 
     public FlightsServlet() {
@@ -67,5 +67,5 @@ public class FlightsServlet extends HttpServlet {
                 setArrivalAirport(arrivalAirport).build();
         List<Flights> flights = flightsService.get(filter);
         resp.sendRedirect( req.getContextPath() + "/flights");
-    }
+    }*/
 }

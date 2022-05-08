@@ -2,16 +2,13 @@ package by.it_academy.jd2.MK_JD2_90_22.vote.airoportsinfo.dao;
 
 import by.it_academy.jd2.MK_JD2_90_22.vote.airoportsinfo.dao.api.IAirport;
 import by.it_academy.jd2.MK_JD2_90_22.vote.airoportsinfo.dao.dto.AirportInfo;
-import by.it_academy.jd2.MK_JD2_90_22.vote.aviasailes.dao.Airport;
-import com.mchange.v2.c3p0.ComboPooledDataSource;
-import com.mchange.v2.c3p0.DataSources;
-import javax.sql.DataSource;
-import java.beans.PropertyVetoException;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class AirportPoolDao2 implements IAirport {
+    private static final AirportPoolDao2 instance = new AirportPoolDao2();
     private static final String QUERY = "SELECT\n" +
             "    airport_code,\n" +
             "    airport_name,\n" +
@@ -20,25 +17,10 @@ public class AirportPoolDao2 implements IAirport {
             "    timezone\n" +
             "FROM\n" +
             "    bookings.airports\n";
-    private static final AirportPoolDao2 instance = new AirportPoolDao2();
+
     private AirportPoolDao2(){
 
     }
-    //private final DataSource ds;
-
-    /*public AirportPoolDao2() {
-        ComboPooledDataSource pool = new ComboPooledDataSource();
-        try {
-            pool.setDriverClass("org.postgresql.Driver");
-        } catch (PropertyVetoException e) {
-            throw new RuntimeException("Проверь имя драйвера!!!!", e);
-        }
-        pool.setJdbcUrl("jdbc:postgresql://localhost:5432/demo");
-        pool.setUser("postgres");
-        pool.setPassword("postgres");
-
-        this.ds = pool;
-    }*/
 
     public List<AirportInfo> getAll(String sort){
         List<AirportInfo> airports = new ArrayList<>();
@@ -64,10 +46,6 @@ public class AirportPoolDao2 implements IAirport {
         return airports;
     }
 
-
-    /*private Connection getConnection() throws SQLException {
-        return this.ds.getConnection();
-    }*/
 
     private AirportInfo map(ResultSet rs) throws SQLException {
         return new AirportInfo(

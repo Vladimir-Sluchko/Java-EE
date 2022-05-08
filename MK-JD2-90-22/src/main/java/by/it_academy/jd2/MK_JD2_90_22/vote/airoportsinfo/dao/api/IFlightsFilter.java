@@ -9,7 +9,9 @@ public interface IFlightsFilter extends AutoCloseable{
 
      List<FlightsFilter> getAll();
 
-     List<String> getDistinct(String columnName);
+     /*List<String> getDistinct(String columnName);*/
+     List<FlightsFilter> getDistinctAirport(String columnName);
+     List<FlightsFilter> getDistinctData(String columnName);
 
 
 }
