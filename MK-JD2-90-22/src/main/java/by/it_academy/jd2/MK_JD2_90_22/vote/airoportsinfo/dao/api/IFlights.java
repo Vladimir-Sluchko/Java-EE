@@ -1,6 +1,5 @@
 package by.it_academy.jd2.MK_JD2_90_22.vote.airoportsinfo.dao.api;
 
-import by.it_academy.jd2.MK_JD2_90_22.vote.airoportsinfo.dao.dto.AirportInfo;
 import by.it_academy.jd2.MK_JD2_90_22.vote.airoportsinfo.dao.dto.Flights;
 import by.it_academy.jd2.MK_JD2_90_22.vote.airoportsinfo.dao.dto.FlightsFilter;
 
@@ -12,6 +11,7 @@ public interface IFlights extends AutoCloseable{
      //List<Flights> get(FlightsFilter filter, Pageable pageable);
      //List<Flights> get(Pageable pageable);
      List<Flights> get(FlightsFilter filter);
+     List<Flights> getAll();
 
 
 }

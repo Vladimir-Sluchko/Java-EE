@@ -1,18 +1,17 @@
 package by.it_academy.jd2.MK_JD2_90_22.vote.airoportsinfo.dao.dto;
 
-import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 
-public class FlightsFilter {
+public class FlightsFilterZone {
     private final ZonedDateTime scheduledDeparture;
     private final String departureAirport;
     private final ZonedDateTime scheduledArrival;
     private final String arrivalAirport;
 
-     private FlightsFilter(ZonedDateTime scheduledDeparture,
-                           String departureAirport,
-                           ZonedDateTime scheduledArrival,
-                           String arrivalAirport) {
+     private FlightsFilterZone(ZonedDateTime scheduledDeparture,
+                               String departureAirport,
+                               ZonedDateTime scheduledArrival,
+                               String arrivalAirport) {
         this.scheduledDeparture = scheduledDeparture;
         this.departureAirport = departureAirport;
         this.scheduledArrival = scheduledArrival;
@@ -75,8 +74,8 @@ public class FlightsFilter {
         public static Builder creat(){
             return new Builder();
         }
-        public FlightsFilter build() {
-            return new FlightsFilter(scheduledDeparture,departureAirport,scheduledArrival,arrivalAirport);
+        public FlightsFilterZone build() {
+            return new FlightsFilterZone(scheduledDeparture,departureAirport,scheduledArrival,arrivalAirport);
         }
     }
 }

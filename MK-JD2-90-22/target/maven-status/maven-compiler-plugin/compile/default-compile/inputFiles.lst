@@ -26,8 +26,8 @@
 /Users/kristinaslucko/Documents/Java/Git/Java-EE/MK-JD2-90-22/src/main/java/by/it_academy/jd2/MK_JD2_90_22/vote/service/cookieAndSession/SetSessionService.java
 /Users/kristinaslucko/Documents/Java/Git/Java-EE/MK-JD2-90-22/src/main/java/by/it_academy/jd2/MK_JD2_90_22/vote/servlets/voteServlet/AboutServlet.java
 /Users/kristinaslucko/Documents/Java/Git/Java-EE/MK-JD2-90-22/src/main/java/by/it_academy/jd2/MK_JD2_90_22/vote/servlets/singletone/VoteServletSingleton.java
-/Users/kristinaslucko/Documents/Java/Git/Java-EE/MK-JD2-90-22/src/main/java/by/it_academy/jd2/MK_JD2_90_22/vote/airoportsinfo/dao/dto/SqlInitializer.java
 /Users/kristinaslucko/Documents/Java/Git/Java-EE/MK-JD2-90-22/src/main/java/by/it_academy/jd2/MK_JD2_90_22/vote/airoportsinfo/service/api/IFlightsFilterService.java
+/Users/kristinaslucko/Documents/Java/Git/Java-EE/MK-JD2-90-22/src/main/java/by/it_academy/jd2/MK_JD2_90_22/vote/airoportsinfo/utils/DateZonedUtils.java
 /Users/kristinaslucko/Documents/Java/Git/Java-EE/MK-JD2-90-22/src/main/java/by/it_academy/jd2/MK_JD2_90_22/vote/servlets/singletone/GenresServletSingleton.java
 /Users/kristinaslucko/Documents/Java/Git/Java-EE/MK-JD2-90-22/src/main/java/by/it_academy/jd2/MK_JD2_90_22/vote/airoportsinfo/dao/FlightsFilterPoolDao.java
 /Users/kristinaslucko/Documents/Java/Git/Java-EE/MK-JD2-90-22/src/main/java/by/it_academy/jd2/MK_JD2_90_22/vote/person/core/dto/Person.java
@@ -57,6 +57,7 @@
 /Users/kristinaslucko/Documents/Java/Git/Java-EE/MK-JD2-90-22/src/main/java/by/it_academy/jd2/MK_JD2_90_22/vote/service/vote/TopArtistService.java
 /Users/kristinaslucko/Documents/Java/Git/Java-EE/MK-JD2-90-22/src/main/java/by/it_academy/jd2/MK_JD2_90_22/vote/servlets/voteServlet/TopArtistServlet.java
 /Users/kristinaslucko/Documents/Java/Git/Java-EE/MK-JD2-90-22/src/main/java/by/it_academy/jd2/MK_JD2_90_22/vote/airoportsinfo/dao/dto/AirportInfo.java
+/Users/kristinaslucko/Documents/Java/Git/Java-EE/MK-JD2-90-22/src/main/java/by/it_academy/jd2/MK_JD2_90_22/vote/airoportsinfo/dao/dto/FlightsFilterZone.java
 /Users/kristinaslucko/Documents/Java/Git/Java-EE/MK-JD2-90-22/src/main/java/by/it_academy/jd2/MK_JD2_90_22/vote/service/vote/ArtistService.java
 /Users/kristinaslucko/Documents/Java/Git/Java-EE/MK-JD2-90-22/src/main/java/by/it_academy/jd2/MK_JD2_90_22/vote/service/cookieAndSession/SetCookiesService.java
 /Users/kristinaslucko/Documents/Java/Git/Java-EE/MK-JD2-90-22/src/main/java/by/it_academy/jd2/MK_JD2_90_22/vote/airoportsinfo/service/api/IAirportService.java
@@ -71,7 +72,6 @@
 /Users/kristinaslucko/Documents/Java/Git/Java-EE/MK-JD2-90-22/src/main/java/by/it_academy/jd2/MK_JD2_90_22/vote/aviasailes/main/Main5.java
 /Users/kristinaslucko/Documents/Java/Git/Java-EE/MK-JD2-90-22/src/main/java/by/it_academy/jd2/MK_JD2_90_22/vote/jsp/servlets/HelloServlet.java
 /Users/kristinaslucko/Documents/Java/Git/Java-EE/MK-JD2-90-22/src/main/java/by/it_academy/jd2/MK_JD2_90_22/vote/airoportsinfo/dao/ConnectionBase.java
-/Users/kristinaslucko/Documents/Java/Git/Java-EE/MK-JD2-90-22/src/main/java/by/it_academy/jd2/MK_JD2_90_22/vote/airoportsinfo/dao/api/IParametr.java
 /Users/kristinaslucko/Documents/Java/Git/Java-EE/MK-JD2-90-22/src/main/java/by/it_academy/jd2/MK_JD2_90_22/vote/service/singleton/GenrySingleton.java
 /Users/kristinaslucko/Documents/Java/Git/Java-EE/MK-JD2-90-22/src/main/java/by/it_academy/jd2/MK_JD2_90_22/vote/aviasailes/dao/Airport.java
 /Users/kristinaslucko/Documents/Java/Git/Java-EE/MK-JD2-90-22/src/main/java/by/it_academy/jd2/MK_JD2_90_22/vote/aviasailes/main/Main2.java

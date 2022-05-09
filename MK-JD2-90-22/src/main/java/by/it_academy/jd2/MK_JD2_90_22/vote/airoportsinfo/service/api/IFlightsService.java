@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface IFlightsService {
     List<Flights> get(FlightsFilter filter);
+    List<Flights> getAll(FlightsFilter filter);
 }

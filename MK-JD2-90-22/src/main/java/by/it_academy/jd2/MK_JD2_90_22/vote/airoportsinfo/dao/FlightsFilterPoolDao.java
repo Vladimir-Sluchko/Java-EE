@@ -1,22 +1,15 @@
 package by.it_academy.jd2.MK_JD2_90_22.vote.airoportsinfo.dao;
 
-import by.it_academy.jd2.MK_JD2_90_22.vote.airoportsinfo.dao.api.IFlights;
 import by.it_academy.jd2.MK_JD2_90_22.vote.airoportsinfo.dao.api.IFlightsFilter;
-import by.it_academy.jd2.MK_JD2_90_22.vote.airoportsinfo.dao.dto.AirportInfo;
-import by.it_academy.jd2.MK_JD2_90_22.vote.airoportsinfo.dao.dto.Flights;
 import by.it_academy.jd2.MK_JD2_90_22.vote.airoportsinfo.dao.dto.FlightsFilter;
-import com.mchange.v2.c3p0.ComboPooledDataSource;
-import com.mchange.v2.c3p0.DataSources;
+import by.it_academy.jd2.MK_JD2_90_22.vote.airoportsinfo.utils.DateZonedUtils;
 
-import javax.sql.DataSource;
-import java.beans.PropertyVetoException;
 import java.sql.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class FlightsFilterPoolDao implements IFlightsFilter {
-    private static final FlightsFilterPoolDao instance = new FlightsFilterPoolDao();
+    private final static FlightsFilterPoolDao instance = new FlightsFilterPoolDao();
     private static final String QUERY = "SELECT\n" +
             "    scheduled_departure,\n" +
             "    departure_airport,\n" +
@@ -103,13 +96,14 @@ public class FlightsFilterPoolDao implements IFlightsFilter {
     }
     private FlightsFilter mapDistinctData(ResultSet rs) throws SQLException {
         return FlightsFilter.Builder.creat()
-                .setScheduledArrival(rs.getTimestamp("scheduled_arrival").toLocalDateTime()).build();
+                .setScheduledArrival(DateZonedUtils.getInstance().getZonedDateTime(rs,"scheduled_arrival"))
+                .build();
     }
 
     private FlightsFilter mapAll(ResultSet rs) throws SQLException {
         return FlightsFilter.Builder.creat()
-                .setScheduledArrival(rs.getTimestamp("scheduled_arrival").toLocalDateTime())
-                .setScheduledDeparture(rs.getTimestamp("scheduled_departure").toLocalDateTime())
+                .setScheduledArrival(DateZonedUtils.getInstance().getZonedDateTime(rs,"scheduled_arrival"))
+                .setScheduledDeparture(DateZonedUtils.getInstance().getZonedDateTime(rs,"scheduled_departure"))
                 .setArrivalAirport(rs.getString("arrival_airport"))
                 .setDepartureAirport(rs.getString("departure_airport")).build();
     }

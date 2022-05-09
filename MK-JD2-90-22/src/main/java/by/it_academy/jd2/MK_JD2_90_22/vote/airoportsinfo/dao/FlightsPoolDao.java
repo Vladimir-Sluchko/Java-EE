@@ -1,86 +1,72 @@
 package by.it_academy.jd2.MK_JD2_90_22.vote.airoportsinfo.dao;
 
 import by.it_academy.jd2.MK_JD2_90_22.vote.airoportsinfo.dao.api.IFlights;
-import by.it_academy.jd2.MK_JD2_90_22.vote.airoportsinfo.dao.dto.AirportInfo;
 import by.it_academy.jd2.MK_JD2_90_22.vote.airoportsinfo.dao.dto.Flights;
 import by.it_academy.jd2.MK_JD2_90_22.vote.airoportsinfo.dao.dto.FlightsFilter;
-import com.mchange.v2.c3p0.ComboPooledDataSource;
-import com.mchange.v2.c3p0.DataSources;
+import by.it_academy.jd2.MK_JD2_90_22.vote.airoportsinfo.utils.DateZonedUtils;
 
-import javax.sql.DataSource;
-import java.beans.PropertyVetoException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.time.Duration;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class FlightsPoolDao implements IFlights {
-    //private static IFlights instance = new FlightsPoolDao();
-    private final DataSource ds;
+    private final static FlightsPoolDao instance = new FlightsPoolDao();
+    DateZonedUtils dateZonedUtils = DateZonedUtils.getInstance();
 
-    public FlightsPoolDao() {
-        ComboPooledDataSource pool = new ComboPooledDataSource();
-        try {
-            pool.setDriverClass("org.postgresql.Driver");
-        } catch (PropertyVetoException e) {
-            throw new RuntimeException("Проверь имя драйвера!!!!", e);
-        }
-        pool.setJdbcUrl("jdbc:postgresql://localhost:5432/demo");
-        pool.setUser("postgres");
-        pool.setPassword("postgres");
+    private final static String QUERY = "SELECT\n" +
+            "    flight_id,\n" +
+            "    flight_no,\n" +
+            "    scheduled_departure,\n" +
+            "    scheduled_departure_local,\n" +
+            "    scheduled_arrival,\n" +
+            "    scheduled_arrival_local,\n" +
+            "    scheduled_duration,\n" +
+            "    departure_airport,\n" +
+            "    departure_airport_name,\n" +
+            "    departure_city,\n" +
+            "    arrival_airport,\n" +
+            "    arrival_airport_name,\n" +
+            "    arrival_city,\n" +
+            "    status,\n" +
+            "    aircraft_code,\n" +
+            "    actual_departure,\n" +
+            "    actual_departure_local,\n" +
+            "    actual_arrival,\n" +
+            "    actual_arrival_local,\n" +
+            "    actual_duration\n" +
+            "FROM\n" +
+            "    bookings.flights_v\n" +
+            "LIMIT 50 \n";
 
-        this.ds = pool;
-    }
 
-    /*public List<Flights> getAll(){
+    public List<Flights> getAll(){
         List<Flights> airports = new ArrayList<>();
 
-        try (Connection connection = getConnection();
-             Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery(
-                     "SELECT\n" +
-                             "    flight_id,\n" +
-                             "    flight_no,\n" +
-                             "    scheduled_departure,\n" +
-                             "    scheduled_arrival,\n" +
-                             "    departure_airport,\n" +
-                             "    arrival_airport,\n" +
-                             "    status,\n" +
-                             "    aircraft_code,\n" +
-                             "    actual_departure,\n" +
-                             "    actual_arrival\n" +
-                             "FROM\n" +
-                             "    bookings.flights_v\n" +
-                             "LIMIT 100;"
-             );
+        try (Connection connection = ConnectionBase.getConnection();
+             PreparedStatement statement = connection.prepareStatement(QUERY);
         ) {
-            while (resultSet.next()){
-                airports.add(map(resultSet));
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    airports.add(map(resultSet));
+                }
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return airports;
-    }*/
+    }
 
     @Override
     public List<Flights> get(FlightsFilter filter) {
+        return null;
+    }
+
+    /*@Override
+    public List<Flights> get(FlightsFilter filter) {
         List<Flights> airports = new ArrayList<>();
-        String sqlScript = "SELECT\n" +
-                "    flight_id,\n" +
-                "    flight_no,\n" +
-                "    scheduled_departure,\n" +
-                "    scheduled_arrival,\n" +
-                "    departure_airport,\n" +
-                "    arrival_airport,\n" +
-                "    status,\n" +
-                "    aircraft_code,\n" +
-                "    actual_departure,\n" +
-                "    actual_arrival\n" +
-                "FROM\n" +
-                "    bookings.flights_v\n";
         filter.getDepartureAirport();
         filter.getScheduledDeparture();
         filter.getArrivalAirport();
@@ -115,41 +101,52 @@ public class FlightsPoolDao implements IFlights {
             }
         }
 
-        try (Connection connection = getConnection();
-             Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery(sqlScript);) {
-            while (resultSet.next()){
-                airports.add(map(resultSet));
+        try (Connection connection = ConnectionBase.getConnection();
+             PreparedStatement statement = connection.prepareStatement(QUERY);
+
+             ) {
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    airports.add(map(resultSet));
+                }
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return airports;
-    }
-
-    private Connection getConnection() throws SQLException {
-        return this.ds.getConnection();
-    }
+    }*/
 
     private Flights map(ResultSet rs) throws SQLException {
-
-        return new Flights(
-                rs.getInt("flight_id"),
-                rs.getString("flight_no"),
-                rs.getTimestamp("scheduled_departure").toLocalDateTime(),
-                rs.getTimestamp("scheduled_arrival").toLocalDateTime(),
-                rs.getString("departure_airport"),
-                rs.getString("arrival_airport"),
-                rs.getString("status"),
-                rs.getString("aircraft_code"),
-                rs.getString("actual_departure"),
-                rs.getString("actual_arrival")
-
-        );
+        return Flights.Builder.create()
+                .setFlightId(rs.getLong("flight_id"))
+                .setFlightNo(rs.getString("flight_no"))
+                .setScheduledDeparture(dateZonedUtils.getZonedDateTime(rs,"scheduled_departure"))
+                .setScheduledDepartureLocal(rs.getTimestamp("scheduled_departure_local").toLocalDateTime())
+                .setScheduledArrival(dateZonedUtils.getZonedDateTime(rs,"scheduled_arrival"))
+                .setScheduledArrivalLocal(rs.getTimestamp("scheduled_arrival_local").toLocalDateTime())
+                .setScheduledDuration(dateZonedUtils.getDurationTime(rs,"scheduled_duration"))
+                .setDepartureAirport(rs.getString("departure_airport"))
+                .setDepartureAirportName(rs.getString("departure_airport_name"))
+                .setDepartureCity(rs.getString("departure_city"))
+                .setArrivalAirport(rs.getString("arrival_airport"))
+                .setArrivalAirportName(rs.getString("arrival_airport_name"))
+                .setArrivalCity(rs.getString("arrival_city"))
+                .setStatus(rs.getString("status"))
+                .setAircraftCode(rs.getString("aircraft_code"))
+                .setActualDeparture(dateZonedUtils.getZonedDateTime(rs,"actual_departure"))
+                .setActualDepartureLocal(dateZonedUtils.getLocalDateTime(rs,"actual_departure_local"))
+                .setActualArrival(dateZonedUtils.getZonedDateTime(rs,"actual_arrival"))
+                .setActualArrivalLocal(dateZonedUtils.getLocalDateTime(rs,"actual_arrival_local"))
+                .setActualDuration(dateZonedUtils.getDurationTime(rs,"actual_duration"))
+                .build();
     }
 
     @Override
     public void close() throws Exception {
-        DataSources.destroy(this.ds);
+        ConnectionBase.close();
+    }
+
+    public static FlightsPoolDao getInstance(){
+        return instance;
     }
 }
