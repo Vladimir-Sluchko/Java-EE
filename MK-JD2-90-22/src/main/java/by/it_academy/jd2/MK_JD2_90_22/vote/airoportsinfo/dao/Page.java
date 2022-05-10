@@ -9,6 +9,11 @@ public class Page {
         this.page = page;
     }
 
+    public Page() {
+        this.size = size;
+        this.page = page;
+    }
+
     public int getSize() {
         return size;
     }
@@ -16,5 +21,7 @@ public class Page {
     public int getPage() {
         return page;
     }
-
+    public static Page of (int size, int page){
+        return new Page(size, page);
+    }
 }

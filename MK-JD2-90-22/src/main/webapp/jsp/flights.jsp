@@ -13,6 +13,16 @@
             <input type="date", placeholder="Дата вылета" name="scheduledDeparture"></p>
     </p>
     <p>
+            Дата вылета
+            <select name="scheduledDeparture" id="1">
+                <option disabled>Выберите дату вылета</option>
+                <option value=""></option>
+                <c:forEach var="data" items="${filtersAll}">
+                    <option value="${data.scheduledDeparture}">${data.scheduledDeparture}</option>
+                </c:forEach>
+            </select>
+        </p>
+    <p>
         Аэропорт вылета
         <select name="departureAirport" id="2">
             <option disabled>Выберите аэропорт вылета</option>
@@ -96,4 +106,10 @@
 </tbody>
 </table>
 </body>
+
+<form action="flights" method="get">
+        <button name="page" value="-1" type="submit">Back </button>
+        <button name="page" value="1" type="submit">Next </button>
+</form>
+
 </html>

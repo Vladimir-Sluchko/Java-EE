@@ -6,9 +6,6 @@ import by.it_academy.jd2.MK_JD2_90_22.vote.airoportsinfo.dao.dto.FlightsFilter;
 import by.it_academy.jd2.MK_JD2_90_22.vote.airoportsinfo.utils.DateZonedUtils;
 
 import java.sql.*;
-import java.time.Duration;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,8 +35,8 @@ public class FlightsPoolDao implements IFlights {
             "    actual_arrival_local,\n" +
             "    actual_duration\n" +
             "FROM\n" +
-            "    bookings.flights_v\n" +
-            "LIMIT 50 \n";
+            "    bookings.flights_v" +
+            "\n";
 
 
     public List<Flights> getAll(){
@@ -59,52 +56,71 @@ public class FlightsPoolDao implements IFlights {
         return airports;
     }
 
+
+
     @Override
-    public List<Flights> get(FlightsFilter filter) {
-        return null;
-    }
-
-    /*@Override
-    public List<Flights> get(FlightsFilter filter) {
+    public List<Flights> get(FlightsFilter filter, Page page) {
         List<Flights> airports = new ArrayList<>();
-        filter.getDepartureAirport();
-        filter.getScheduledDeparture();
-        filter.getArrivalAirport();
-        filter.getScheduledArrival();
-        if (filter != null) {
-            String where = "";
-            if (filter.getArrivalAirport() != null && !filter.getArrivalAirport().isEmpty()) {
-                where += "arrival_airport = " + "'" + filter.getArrivalAirport() + "'" + " ";
-            }
-            if (filter.getDepartureAirport() != null && !filter.getDepartureAirport().isEmpty()) {
-                if (!where.isEmpty()) {
-                    where += " AND ";
-                }
-                where += "departure_airport = "+"'" + filter.getDepartureAirport() +"'"+ " ";
-            }
-            if (filter.getScheduledDeparture() != null) {
-                if (!where.isEmpty()) {
-                    where += " AND ";
-                }
-                where += "scheduled_departure = " +"'" + filter.getScheduledDeparture() + "'" +" ";
-            }
-            if (filter.getScheduledArrival() != null) {
-                if (!where.isEmpty()) {
-                    where += " AND ";
-                }
-                where += "departure_airport = "+ "'"+ filter.getScheduledArrival() +"'"+ " ";
-            }
-            if (!where.isEmpty()) {
-                sqlScript += "\n WHERE " + where;
-            }else {
+        if (filter == null){
+            filter = FlightsFilter.Builder.creat().build();
+        }
 
+        if(page == null){
+            page = Page.of(25, 1);
+        }
+        List<Object> param = new ArrayList<>();
+
+
+        String where = "";
+
+        if (filter.getArrivalAirport() != null && !filter.getArrivalAirport().isEmpty()) {
+            where += "arrival_airport = ?";
+            param.add(filter.getArrivalAirport());
+        }
+        if (filter.getDepartureAirport() != null && !filter.getDepartureAirport().isEmpty()) {
+            if (!where.isEmpty()) {
+                where += " AND ";
             }
+            where += "departure_airport = ?";
+            param.add(filter.getDepartureAirport());
+        }
+        if (filter.getScheduledDeparture() != null) {
+            if (!where.isEmpty()) {
+                where += " AND ";
+            }
+            where += "scheduled_departure = ?";
+            param.add(filter.getScheduledDeparture());
+        }
+        if (filter.getScheduledArrival() != null) {
+            if (!where.isEmpty()) {
+                where += " AND ";
+            }
+            where += "scheduled_arrival = ?";
+            param.add(filter.getScheduledArrival());
+        }
+
+        if (!where.isEmpty()) {
+            where = "\n WHERE " + where;
+        }
+
+        String pageSize = "";
+
+        if(page.getSize() > 0){
+            pageSize += " LIMIT " + page.getSize();
+        }
+        if (page.getPage() > 0){
+            int offset = page.getSize() * (page.getPage() - 1);
+
+            pageSize += " OFFSET " + offset;
         }
 
         try (Connection connection = ConnectionBase.getConnection();
-             PreparedStatement statement = connection.prepareStatement(QUERY);
-
+             PreparedStatement statement = connection.prepareStatement(QUERY + where + pageSize);
              ) {
+            int index = 0;
+            for (Object par : param) {
+                statement.setObject(++index, par);
+            }
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
                     airports.add(map(resultSet));
@@ -114,16 +130,16 @@ public class FlightsPoolDao implements IFlights {
             throw new RuntimeException(e);
         }
         return airports;
-    }*/
+    }
 
     private Flights map(ResultSet rs) throws SQLException {
         return Flights.Builder.create()
                 .setFlightId(rs.getLong("flight_id"))
                 .setFlightNo(rs.getString("flight_no"))
                 .setScheduledDeparture(dateZonedUtils.getZonedDateTime(rs,"scheduled_departure"))
-                .setScheduledDepartureLocal(rs.getTimestamp("scheduled_departure_local").toLocalDateTime())
+                .setScheduledDepartureLocal(dateZonedUtils.getLocalDateTime(rs,"scheduled_departure_local"))
                 .setScheduledArrival(dateZonedUtils.getZonedDateTime(rs,"scheduled_arrival"))
-                .setScheduledArrivalLocal(rs.getTimestamp("scheduled_arrival_local").toLocalDateTime())
+                .setScheduledArrivalLocal(dateZonedUtils.getLocalDateTime(rs,"scheduled_arrival_local"))
                 .setScheduledDuration(dateZonedUtils.getDurationTime(rs,"scheduled_duration"))
                 .setDepartureAirport(rs.getString("departure_airport"))
                 .setDepartureAirportName(rs.getString("departure_airport_name"))
