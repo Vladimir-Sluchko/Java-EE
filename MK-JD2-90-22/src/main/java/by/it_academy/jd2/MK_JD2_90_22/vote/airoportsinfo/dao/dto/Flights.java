@@ -2,128 +2,15 @@ package by.it_academy.jd2.MK_JD2_90_22.vote.airoportsinfo.dao.dto;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
+import java.time.OffsetDateTime;
 
 public class Flights {
 
-    /*private int flightId;
-    private String flightNo;
-    private LocalDateTime scheduledDeparture;
-    private LocalDateTime scheduledArrival;
-    private String departureAirport;
-    private String arrivalAirport;
-    private String status;
-    private String aircraftCode;
-    private String actualDeparture;
-    private String actualArrival;
-
-    public Flights(int flightId,
-                   String flightNo,
-                   LocalDateTime scheduledDeparture,
-                   LocalDateTime scheduledArrival,
-                   String departureAirport,
-                   String arrivalAirport,
-                   String status,
-                   String aircraftCode,
-                   String actualDeparture,
-                   String actualArrival) {
-        this.flightId = flightId;
-        this.flightNo = flightNo;
-        this.scheduledDeparture = scheduledDeparture;
-        this.scheduledArrival = scheduledArrival;
-        this.departureAirport = departureAirport;
-        this.arrivalAirport = arrivalAirport;
-        this.status = status;
-        this.aircraftCode = aircraftCode;
-        this.actualDeparture = actualDeparture;
-        this.actualArrival = actualArrival;
-    }
-
-    public int getFlightId() {
-        return flightId;
-    }
-
-    public void setFlightId(int flightId) {
-        this.flightId = flightId;
-    }
-
-    public String getFlightNo() {
-        return flightNo;
-    }
-
-    public void setFlightNo(String flightNo) {
-        this.flightNo = flightNo;
-    }
-
-    public LocalDateTime getScheduledDeparture() {
-        return scheduledDeparture;
-    }
-
-    public void setScheduledDeparture(LocalDateTime scheduledDeparture) {
-        this.scheduledDeparture = scheduledDeparture;
-    }
-
-    public LocalDateTime getScheduledArrival() {
-        return scheduledArrival;
-    }
-
-    public void setScheduledArrival(LocalDateTime scheduledArrival) {
-        this.scheduledArrival = scheduledArrival;
-    }
-
-    public String getDepartureAirport() {
-        return departureAirport;
-    }
-
-    public void setDepartureAirport(String departureAirport) {
-        this.departureAirport = departureAirport;
-    }
-
-    public String getArrivalAirport() {
-        return arrivalAirport;
-    }
-
-    public void setArrivalAirport(String arrivalAirport) {
-        this.arrivalAirport = arrivalAirport;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getAircraftCode() {
-        return aircraftCode;
-    }
-
-    public void setAircraftCode(String aircraftCode) {
-        this.aircraftCode = aircraftCode;
-    }
-
-    public String getActualDeparture() {
-        return actualDeparture;
-    }
-
-    public void setActualDeparture(String actualDeparture) {
-        this.actualDeparture = actualDeparture;
-    }
-
-    public String getActualArrival() {
-        return actualArrival;
-    }
-
-    public void setActualArrival(String actualArrival) {
-        this.actualArrival = actualArrival;
-    }*/
-
     private final Long flightId;
     private final String flightNo;
-    private final ZonedDateTime scheduledDeparture;
+    private final OffsetDateTime scheduledDeparture;
     private final LocalDateTime scheduledDepartureLocal;
-    private final ZonedDateTime scheduledArrival;
+    private final OffsetDateTime scheduledArrival;
     private final LocalDateTime scheduledArrivalLocal;
     private final Duration scheduledDuration;
     private final String departureAirport;
@@ -134,19 +21,19 @@ public class Flights {
     private final String arrivalCity;
     private final String status;
     private final String aircraftCode;
-    private final ZonedDateTime actualDeparture;
+    private final OffsetDateTime actualDeparture;
     private final LocalDateTime actualDepartureLocal;
-    private final ZonedDateTime actualArrival;
+    private final OffsetDateTime actualArrival;
     private final LocalDateTime actualArrivalLocal;
     private final Duration actualDuration;
 
-    private Flights(Long flightId, String flightNo, ZonedDateTime scheduledDeparture,
-                    LocalDateTime scheduledDepartureLocal, ZonedDateTime scheduledArrival,
+    private Flights(Long flightId, String flightNo, OffsetDateTime scheduledDeparture,
+                    LocalDateTime scheduledDepartureLocal, OffsetDateTime scheduledArrival,
                     LocalDateTime scheduledArrivalLocal, Duration scheduledDuration,
                     String departureAirport, String departureAirportName, String departureCity,
                     String arrivalAirport, String arrivalAirportName, String arrivalCity,
-                    String status, String aircraftCode, ZonedDateTime actualDeparture,
-                    LocalDateTime actualDepartureLocal, ZonedDateTime actualArrival,
+                    String status, String aircraftCode, OffsetDateTime actualDeparture,
+                    LocalDateTime actualDepartureLocal, OffsetDateTime actualArrival,
                     LocalDateTime actualArrivalLocal, Duration actualDuration) {
         this.flightId = flightId;
         this.flightNo = flightNo;
@@ -178,7 +65,7 @@ public class Flights {
         return flightNo;
     }
 
-    public ZonedDateTime getScheduledDeparture() {
+    public OffsetDateTime getScheduledDeparture() {
         return scheduledDeparture;
     }
 
@@ -186,7 +73,7 @@ public class Flights {
         return scheduledDepartureLocal;
     }
 
-    public ZonedDateTime getScheduledArrival() {
+    public OffsetDateTime getScheduledArrival() {
         return scheduledArrival;
     }
 
@@ -230,7 +117,7 @@ public class Flights {
         return aircraftCode;
     }
 
-    public ZonedDateTime getActualDeparture() {
+    public OffsetDateTime getActualDeparture() {
         return actualDeparture;
     }
 
@@ -238,7 +125,7 @@ public class Flights {
         return actualDepartureLocal;
     }
 
-    public ZonedDateTime getActualArrival() {
+    public OffsetDateTime getActualArrival() {
         return actualArrival;
     }
 
@@ -253,9 +140,9 @@ public class Flights {
     public static class Builder {
         private Long flightId;
         private String flightNo;
-        private ZonedDateTime scheduledDeparture;
+        private OffsetDateTime scheduledDeparture;
         private LocalDateTime scheduledDepartureLocal;
-        private ZonedDateTime scheduledArrival;
+        private OffsetDateTime scheduledArrival;
         private LocalDateTime scheduledArrivalLocal;
         private Duration scheduledDuration;
         private String departureAirport;
@@ -266,9 +153,9 @@ public class Flights {
         private String arrivalCity;
         private String status;
         private String aircraftCode;
-        private ZonedDateTime actualDeparture;
+        private OffsetDateTime actualDeparture;
         private LocalDateTime actualDepartureLocal;
-        private ZonedDateTime actualArrival;
+        private OffsetDateTime actualArrival;
         private LocalDateTime actualArrivalLocal;
         private Duration actualDuration;
 
@@ -285,7 +172,7 @@ public class Flights {
             return this;
         }
 
-        public Builder setScheduledDeparture(ZonedDateTime scheduledDeparture) {
+        public Builder setScheduledDeparture(OffsetDateTime scheduledDeparture) {
             this.scheduledDeparture = scheduledDeparture;
             return this;
         }
@@ -295,7 +182,7 @@ public class Flights {
             return this;
         }
 
-        public Builder setScheduledArrival(ZonedDateTime scheduledArrival) {
+        public Builder setScheduledArrival(OffsetDateTime scheduledArrival) {
             this.scheduledArrival = scheduledArrival;
             return this;
         }
@@ -350,7 +237,7 @@ public class Flights {
             return this;
         }
 
-        public Builder setActualDeparture(ZonedDateTime actualDeparture) {
+        public Builder setActualDeparture(OffsetDateTime actualDeparture) {
             this.actualDeparture = actualDeparture;
             return this;
         }
@@ -360,7 +247,7 @@ public class Flights {
             return this;
         }
 
-        public Builder setActualArrival(ZonedDateTime actualArrival) {
+        public Builder setActualArrival(OffsetDateTime actualArrival) {
             this.actualArrival = actualArrival;
             return this;
         }

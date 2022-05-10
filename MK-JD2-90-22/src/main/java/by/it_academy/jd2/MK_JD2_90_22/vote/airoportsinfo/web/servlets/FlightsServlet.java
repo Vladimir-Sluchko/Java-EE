@@ -34,15 +34,25 @@ public class FlightsServlet extends HttpServlet {
 
         List<FlightsFilter> filtersList = flightsFilterService.getDistinctAirport("arrival_airport");
         List<FlightsFilter> filtersAll = flightsFilterService.getAll();
-        req.setAttribute("filtersList",filtersList);
-        req.setAttribute("filtersAll",filtersAll);
 
-        String scheduledDeparture = req.getParameter("scheduledDeparture");
         String departureAirport = req.getParameter("departureAirport");
-        String scheduledArrival = req.getParameter("scheduledArrival");
         String arrivalAirport = req.getParameter("arrivalAirport");
 
-        ZonedDateTime scheduledArrivalZone;
+        FlightsFilter.Builder builder = FlightsFilter.Builder.creat();
+        if(departureAirport != null && !departureAirport.isEmpty()){
+            builder.setDepartureAirport(departureAirport);
+        }
+        if(arrivalAirport != null && !arrivalAirport.isEmpty()){
+            builder.setArrivalAirport(arrivalAirport);
+        }
+        FlightsFilter filterSaveToPage = builder.build();
+
+
+        String scheduledDeparture = req.getParameter("scheduledDeparture");
+        String scheduledArrival = req.getParameter("scheduledArrival");
+
+
+       /* ZonedDateTime scheduledArrivalZone;
         ZonedDateTime scheduledDepartureZone;
         if(scheduledArrival != null){
            scheduledArrivalZone = ZonedDateTime.parse(scheduledArrival, ISO_ZONED_DATE_TIME);
@@ -50,7 +60,7 @@ public class FlightsServlet extends HttpServlet {
 
         if(scheduledDeparture != null){
             scheduledDepartureZone = ZonedDateTime.parse(scheduledArrival, ISO_ZONED_DATE_TIME);
-        } else scheduledDepartureZone = null;
+        } else scheduledDepartureZone = null;*/
 
         String reqPage = req.getParameter("page");
         String reqSize = req.getParameter("size");
@@ -71,29 +81,17 @@ public class FlightsServlet extends HttpServlet {
         FlightsFilter filter = FlightsFilter.Builder.creat()
                 .setArrivalAirport(arrivalAirport)
                 .setDepartureAirport(departureAirport)
-                .setScheduledArrival(scheduledArrivalZone)
-                .setScheduledDeparture(scheduledDepartureZone).build();
+                //.setScheduledArrival(scheduledArrivalZone)
+                //.setScheduledDeparture(scheduledDepartureZone)
+                .build();
         List<Flights> flights = flightsService.get(filter,of);
         req.setAttribute("flights",flights);
+        req.setAttribute("filtersList",filtersList);
+        req.setAttribute("filtersAll",filtersAll);
+        req.setAttribute("departureAirport",filterSaveToPage.getDepartureAirport());
+        req.setAttribute("arrivalAirport",filterSaveToPage.getArrivalAirport());
+
         req.getRequestDispatcher("/jsp/flights.jsp").forward(req,resp);
     }
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setCharacterEncoding("UTF-8");
-        resp.setContentType("text/http; charset=utf-8");
-        /*String scheduledDeparture = req.getParameter("scheduledDeparture");
-        String departureAirport = req.getParameter("departureAirport");
-        String scheduledArrival = req.getParameter("scheduledArrival");
-        String arrivalAirport = req.getParameter("arrivalAirport");
-
-
-        FlightsFilter filter = FlightsFilter.Builder.creat()
-                .setArrivalAirport(arrivalAirport).
-                setDepartureAirport(departureAirport).
-                setDepartureAirport(departureAirport).
-                setArrivalAirport(arrivalAirport).build();
-        List<Flights> flights = flightsService.getAll(filter);
-        resp.sendRedirect( req.getContextPath() + "/flights");*/
-    }
 }

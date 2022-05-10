@@ -5,6 +5,7 @@ import by.it_academy.jd2.MK_JD2_90_22.vote.airoportsinfo.dao.dto.FlightsFilter;
 import by.it_academy.jd2.MK_JD2_90_22.vote.airoportsinfo.utils.DateZonedUtils;
 
 import java.sql.*;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -96,14 +97,14 @@ public class FlightsFilterPoolDao implements IFlightsFilter {
     }
     private FlightsFilter mapDistinctData(ResultSet rs) throws SQLException {
         return FlightsFilter.Builder.creat()
-                .setScheduledArrival(DateZonedUtils.getInstance().getZonedDateTime(rs,"scheduled_arrival"))
+                .setScheduledArrival(rs.getObject("scheduled_arrival",OffsetDateTime.class))
                 .build();
     }
 
     private FlightsFilter mapAll(ResultSet rs) throws SQLException {
         return FlightsFilter.Builder.creat()
-                .setScheduledArrival(DateZonedUtils.getInstance().getZonedDateTime(rs,"scheduled_arrival"))
-                .setScheduledDeparture(DateZonedUtils.getInstance().getZonedDateTime(rs,"scheduled_departure"))
+                .setScheduledArrival(rs.getObject("scheduled_arrival",OffsetDateTime.class))
+                .setScheduledDeparture(rs.getObject("scheduled_departure", OffsetDateTime.class))
                 .setArrivalAirport(rs.getString("arrival_airport"))
                 .setDepartureAirport(rs.getString("departure_airport")).build();
     }

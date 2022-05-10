@@ -6,6 +6,7 @@ import by.it_academy.jd2.MK_JD2_90_22.vote.airoportsinfo.dao.dto.FlightsFilter;
 import by.it_academy.jd2.MK_JD2_90_22.vote.airoportsinfo.utils.DateZonedUtils;
 
 import java.sql.*;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -136,9 +137,9 @@ public class FlightsPoolDao implements IFlights {
         return Flights.Builder.create()
                 .setFlightId(rs.getLong("flight_id"))
                 .setFlightNo(rs.getString("flight_no"))
-                .setScheduledDeparture(dateZonedUtils.getZonedDateTime(rs,"scheduled_departure"))
+                .setScheduledDeparture(rs.getObject("scheduled_departure", OffsetDateTime.class))
                 .setScheduledDepartureLocal(dateZonedUtils.getLocalDateTime(rs,"scheduled_departure_local"))
-                .setScheduledArrival(dateZonedUtils.getZonedDateTime(rs,"scheduled_arrival"))
+                .setScheduledArrival(rs.getObject("scheduled_arrival",OffsetDateTime.class))
                 .setScheduledArrivalLocal(dateZonedUtils.getLocalDateTime(rs,"scheduled_arrival_local"))
                 .setScheduledDuration(dateZonedUtils.getDurationTime(rs,"scheduled_duration"))
                 .setDepartureAirport(rs.getString("departure_airport"))
@@ -149,9 +150,9 @@ public class FlightsPoolDao implements IFlights {
                 .setArrivalCity(rs.getString("arrival_city"))
                 .setStatus(rs.getString("status"))
                 .setAircraftCode(rs.getString("aircraft_code"))
-                .setActualDeparture(dateZonedUtils.getZonedDateTime(rs,"actual_departure"))
+                .setActualDeparture(rs.getObject("actual_departure",OffsetDateTime.class))
                 .setActualDepartureLocal(dateZonedUtils.getLocalDateTime(rs,"actual_departure_local"))
-                .setActualArrival(dateZonedUtils.getZonedDateTime(rs,"actual_arrival"))
+                .setActualArrival(rs.getObject("actual_arrival",OffsetDateTime.class))
                 .setActualArrivalLocal(dateZonedUtils.getLocalDateTime(rs,"actual_arrival_local"))
                 .setActualDuration(dateZonedUtils.getDurationTime(rs,"actual_duration"))
                 .build();

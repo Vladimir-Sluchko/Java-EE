@@ -1,17 +1,17 @@
 package by.it_academy.jd2.MK_JD2_90_22.vote.airoportsinfo.dao.dto;
 
 import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
+import java.time.OffsetDateTime;
 
 public class FlightsFilter {
-    private final ZonedDateTime scheduledDeparture;
+    private final OffsetDateTime scheduledDeparture;
     private final String departureAirport;
-    private final ZonedDateTime scheduledArrival;
+    private final OffsetDateTime scheduledArrival;
     private final String arrivalAirport;
 
-     private FlightsFilter(ZonedDateTime scheduledDeparture,
+     private FlightsFilter(OffsetDateTime scheduledDeparture,
                            String departureAirport,
-                           ZonedDateTime scheduledArrival,
+                           OffsetDateTime scheduledArrival,
                            String arrivalAirport) {
         this.scheduledDeparture = scheduledDeparture;
         this.departureAirport = departureAirport;
@@ -20,7 +20,7 @@ public class FlightsFilter {
     }
 
 
-    public ZonedDateTime getScheduledDeparture() {
+    public OffsetDateTime getScheduledDeparture() {
         return scheduledDeparture;
     }
 
@@ -28,7 +28,7 @@ public class FlightsFilter {
         return departureAirport;
     }
 
-    public ZonedDateTime getScheduledArrival() {
+    public OffsetDateTime getScheduledArrival() {
         return scheduledArrival;
     }
 
@@ -43,15 +43,15 @@ public class FlightsFilter {
     public static class Builder {
         private String departureAirport;
         private String arrivalAirport;
-        private ZonedDateTime scheduledDeparture;
-        private ZonedDateTime scheduledArrival;
+        private OffsetDateTime scheduledDeparture;
+        private OffsetDateTime scheduledArrival;
 
         private Builder() {
         }
 
 
 
-        public Builder setScheduledDeparture(ZonedDateTime scheduledDeparture) {
+        public Builder setScheduledDeparture(OffsetDateTime scheduledDeparture) {
             this.scheduledDeparture = scheduledDeparture;
             return this;
         }
@@ -61,7 +61,7 @@ public class FlightsFilter {
             return this;
         }
 
-        public Builder setScheduledArrival(ZonedDateTime scheduledArrival) {
+        public Builder setScheduledArrival(OffsetDateTime scheduledArrival) {
             this.scheduledArrival = scheduledArrival;
             return this;
         }
