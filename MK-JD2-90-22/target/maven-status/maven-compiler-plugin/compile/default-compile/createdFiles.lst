@@ -26,9 +26,9 @@ by/it_academy/jd2/MK_JD2_90_22/vote/aviasailes/dao/AirportPoolDao.class
 by/it_academy/jd2/MK_JD2_90_22/vote/service/singleton/GenrySingleton.class
 by/it_academy/jd2/MK_JD2_90_22/vote/servlets/probn/HelloWorldServlet.class
 by/it_academy/jd2/MK_JD2_90_22/vote/airoportsinfo/service/AirportService.class
-by/it_academy/jd2/MK_JD2_90_22/vote/airoportsinfo/dao/AirportParametrDao.class
 by/it_academy/jd2/MK_JD2_90_22/vote/airoportsinfo/dao/api/IFlights.class
 by/it_academy/jd2/MK_JD2_90_22/vote/aviasailes/main/Main4.class
+by/it_academy/jd2/MK_JD2_90_22/vote/airoportsinfo/dao/dto/Page.class
 by/it_academy/jd2/MK_JD2_90_22/vote/servlets/voteServlet/AboutServlet.class
 by/it_academy/jd2/MK_JD2_90_22/vote/servlets/voteServlet/TopArtistServlet.class
 by/it_academy/jd2/MK_JD2_90_22/vote/service/cookieAndSession/SetSessionService.class
@@ -79,4 +79,3 @@ by/it_academy/jd2/MK_JD2_90_22/vote/airoportsinfo/service/FlightsService.class
 by/it_academy/jd2/MK_JD2_90_22/vote/servlets/voteServlet/GenresServlet.class
 by/it_academy/jd2/MK_JD2_90_22/vote/airoportsinfo/dao/api/IAirport.class
 by/it_academy/jd2/MK_JD2_90_22/vote/servlets/voteServlet/TopGenreServlet.class
-by/it_academy/jd2/MK_JD2_90_22/vote/airoportsinfo/dao/Page.class

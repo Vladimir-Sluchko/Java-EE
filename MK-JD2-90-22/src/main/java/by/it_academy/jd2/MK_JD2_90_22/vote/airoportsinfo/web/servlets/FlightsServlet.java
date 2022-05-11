@@ -1,6 +1,6 @@
 package by.it_academy.jd2.MK_JD2_90_22.vote.airoportsinfo.web.servlets;
 
-import by.it_academy.jd2.MK_JD2_90_22.vote.airoportsinfo.dao.Page;
+import by.it_academy.jd2.MK_JD2_90_22.vote.airoportsinfo.dao.dto.Page;
 import by.it_academy.jd2.MK_JD2_90_22.vote.airoportsinfo.dao.dto.Flights;
 import by.it_academy.jd2.MK_JD2_90_22.vote.airoportsinfo.dao.dto.FlightsFilter;
 import by.it_academy.jd2.MK_JD2_90_22.vote.airoportsinfo.service.FlightsFilterService;
@@ -14,10 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.time.ZonedDateTime;
 import java.util.List;
-
-import static java.time.format.DateTimeFormatter.ISO_ZONED_DATE_TIME;
 
 @WebServlet(name = "FlightsServlet", urlPatterns = "/flights")
 public class FlightsServlet extends HttpServlet {

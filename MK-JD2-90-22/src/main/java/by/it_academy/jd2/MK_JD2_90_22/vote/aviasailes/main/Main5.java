@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 //1'; INSERT INTO bookings.airports_data(airport_code, airport_name, city, coordinates, timezone) VALUES ('666', '{"en" : "Evil Stantion", "ru" : "Станция Сатаны"}', '{"en" : "Evil Home", "ru" : "Дом Сатаны"}', '(61.5033,55.305801)', '' );SELECT airport_code, airport_name, city, coordinates, timezone FROM bookings.airports WHERE airport_code = '666
 public class Main5 {
-    private static  final String QUERY = "SELECT\n" +
+/*    private static  final String QUERY = "SELECT\n" +
             "    airport_code,\n" +
             "    airport_name,\n" +
             "    city,\n" +
@@ -44,5 +44,5 @@ public class Main5 {
             throw new RuntimeException(e);
         }
 
-    }
+    }*/
 }

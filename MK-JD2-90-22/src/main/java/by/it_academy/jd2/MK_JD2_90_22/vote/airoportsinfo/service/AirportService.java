@@ -22,9 +22,6 @@ public class AirportService implements IAirportService {
 
     @Override
     public void setSort(String str) {
-        /*if (sort.isEmpty()){
-            sort = "ASC";
-        }*/
         sort = str;
     }
 

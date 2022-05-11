@@ -55,15 +55,5 @@ public class AirportInfo {
         this.timezone = timezone;
     }
 
-    @Override
-    public String toString() {
-        return "AirportInfo{" +
-                "airportCode='" + airportCode + '\'' +
-                ", airportName='" + airportName + '\'' +
-                ", city='" + city + '\'' +
-                ", coordinate='" + coordinate + '\'' +
-                ", timezone='" + timezone + '\'' +
-                '}';
-    }
 
 }

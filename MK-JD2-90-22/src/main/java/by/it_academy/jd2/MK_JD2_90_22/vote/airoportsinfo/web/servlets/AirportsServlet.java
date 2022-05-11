@@ -24,8 +24,14 @@ public class AirportsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
-        List<AirportInfo> airportList = service.getAll();
+        resp.setContentType("text/html; charset=utf-8");
+        String sort = req.getParameter("sort");
+        this.service.setSort(sort);
+        List<AirportInfo> airportList = this.service.getAll();
         req.setAttribute("airportList",airportList );
+
+
+
         req.getRequestDispatcher("/jsp/airports.jsp").forward(req,resp);
 
 
@@ -35,8 +41,7 @@ public class AirportsServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("text/http; charset=utf-8");
-        String sort = req.getParameter("sort");
-        service.setSort(sort);
+
         resp.sendRedirect( req.getContextPath() + "/airports");
     }
 }

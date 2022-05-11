@@ -1,7 +1,7 @@
 package by.it_academy.jd2.MK_JD2_90_22.vote.airoportsinfo.service;
 
 import by.it_academy.jd2.MK_JD2_90_22.vote.airoportsinfo.dao.FlightsPoolDao;
-import by.it_academy.jd2.MK_JD2_90_22.vote.airoportsinfo.dao.Page;
+import by.it_academy.jd2.MK_JD2_90_22.vote.airoportsinfo.dao.dto.Page;
 import by.it_academy.jd2.MK_JD2_90_22.vote.airoportsinfo.dao.api.IFlights;
 import by.it_academy.jd2.MK_JD2_90_22.vote.airoportsinfo.dao.dto.Flights;
 import by.it_academy.jd2.MK_JD2_90_22.vote.airoportsinfo.dao.dto.FlightsFilter;

@@ -25,11 +25,14 @@ public class FlightsFilterService  implements IFlightsFilterService{
     @Override
     public List<FlightsFilter> getDistinctAirport(String columnName) {
         List<FlightsFilter> list = dao.getDistinctAirport(columnName);
-        Collections.sort(list, new Comparator<FlightsFilter>() {
-            public int compare(FlightsFilter o1, FlightsFilter o2) {
-                return o1.getArrivalAirport().toString().compareTo(o2.getArrivalAirport().toString());
-            }
-        });
+        if (columnName != null && !columnName.isEmpty()){
+            Collections.sort(list, new Comparator<FlightsFilter>() {
+                public int compare(FlightsFilter o1, FlightsFilter o2) {
+                    return o1.getArrivalAirport().toString().compareTo(o2.getArrivalAirport().toString());
+                }
+            });
+        }
+
         return list;
     }
 
