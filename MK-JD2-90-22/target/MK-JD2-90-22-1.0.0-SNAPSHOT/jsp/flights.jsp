@@ -63,7 +63,7 @@
         </form>
     </div>
     <div>
-        <form action="flights" method="get">
+        <form action="${pageContext.request.contextPath}/flights" method="get">
             <button name="page" value="-1" type="submit">Back </button>
             <button name="page" value="1" type="submit">Next </button>
         </form>
@@ -119,7 +119,7 @@
         </table>
     </div>
     <div>
-        <form action="flights" method="get">
+        <form action="${pageContext.request.contextPath}/flights" method="get">
             <button name="page" value="-1" type="submit">Back </button>
             <button name="page" value="1" type="submit">Next </button>
         </form>

@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.OffsetDateTime;
 import java.util.List;
 
 @WebServlet(name = "FlightsServlet", urlPatterns = "/flights")
@@ -34,6 +35,9 @@ public class FlightsServlet extends HttpServlet {
 
         String departureAirport = req.getParameter("departureAirport");
         String arrivalAirport = req.getParameter("arrivalAirport");
+        //получили дату
+        String scheduledDeparture = req.getParameter("scheduledDeparture");
+        String scheduledArrival = req.getParameter("scheduledArrival");
 
         FlightsFilter.Builder builder = FlightsFilter.Builder.creat();
         if(departureAirport != null && !departureAirport.isEmpty()){
@@ -42,52 +46,44 @@ public class FlightsServlet extends HttpServlet {
         if(arrivalAirport != null && !arrivalAirport.isEmpty()){
             builder.setArrivalAirport(arrivalAirport);
         }
+        if(scheduledDeparture != null && !scheduledDeparture.isEmpty()){
+            builder.setScheduledDeparture(OffsetDateTime.parse(scheduledDeparture));
+        }
+        if(scheduledArrival != null && !scheduledArrival.isEmpty()){
+            builder.setScheduledDeparture(OffsetDateTime.parse(scheduledArrival));
+        }
+
         FlightsFilter filterSaveToPage = builder.build();
 
-
-        String scheduledDeparture = req.getParameter("scheduledDeparture");
-        String scheduledArrival = req.getParameter("scheduledArrival");
-
-
-       /* ZonedDateTime scheduledArrivalZone;
-        ZonedDateTime scheduledDepartureZone;
-        if(scheduledArrival != null){
-           scheduledArrivalZone = ZonedDateTime.parse(scheduledArrival, ISO_ZONED_DATE_TIME);
-        } else scheduledArrivalZone = null;
-
-        if(scheduledDeparture != null){
-            scheduledDepartureZone = ZonedDateTime.parse(scheduledArrival, ISO_ZONED_DATE_TIME);
-        } else scheduledDepartureZone = null;*/
 
         String reqPage = req.getParameter("page");
         String reqSize = req.getParameter("size");
         int page1;
         int page = 1;
-        if (reqPage != null && !reqPage.isEmpty()) {
+        //int i = Integer.parseInt(reqPage);
+        if (reqPage != null && !reqPage.isEmpty()){
             page1 = Integer.parseInt(reqPage);
             page = page + page1;
         }
+        /*if (reqPage != null && !reqPage.isEmpty()) {
+            page1 = Integer.parseInt(reqPage);
+            page = ++page1;
+        }*/
         int size = 25;
-        if (reqSize != null && !reqSize.isEmpty()) {
+        /*if (reqSize != null && !reqSize.isEmpty()) {
             size = Integer.parseInt(reqSize);
-        }
+        }*/
         Page of = Page.of(size, page);
 
 
 
-        FlightsFilter filter = FlightsFilter.Builder.creat()
-                .setArrivalAirport(arrivalAirport)
-                .setDepartureAirport(departureAirport)
-                //.setScheduledArrival(scheduledArrivalZone)
-                //.setScheduledDeparture(scheduledDepartureZone)
-                .build();
-        List<Flights> flights = flightsService.get(filter,of);
+        List<Flights> flights = flightsService.get(filterSaveToPage,of);
         req.setAttribute("flights",flights);
         req.setAttribute("filtersList",filtersList);
         req.setAttribute("filtersAll",filtersAll);
         req.setAttribute("departureAirport",filterSaveToPage.getDepartureAirport());
         req.setAttribute("arrivalAirport",filterSaveToPage.getArrivalAirport());
-
+        req.setAttribute("page",page);
         req.getRequestDispatcher("/jsp/flights.jsp").forward(req,resp);
     }
 

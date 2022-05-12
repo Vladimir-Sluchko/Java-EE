@@ -10,10 +10,7 @@ import by.it_academy.jd2.MK_JD2_90_22.vote.airoportsinfo.service.FlightsFilterSe
 import by.it_academy.jd2.MK_JD2_90_22.vote.airoportsinfo.service.api.IAirportService;
 import by.it_academy.jd2.MK_JD2_90_22.vote.airoportsinfo.service.api.IFlightsFilterService;
 
-import java.time.Duration;
-import java.time.ZoneId;
-import java.time.ZoneOffset;
-import java.time.ZonedDateTime;
+import java.time.*;
 import java.util.DuplicateFormatFlagsException;
 import java.util.List;
 
@@ -27,6 +24,7 @@ public class Main {
         for (AirportInfo airportInfo : all) {
             System.out.println(airportInfo);
         }
+
 
 
         //FlightsFilter work aiport code
