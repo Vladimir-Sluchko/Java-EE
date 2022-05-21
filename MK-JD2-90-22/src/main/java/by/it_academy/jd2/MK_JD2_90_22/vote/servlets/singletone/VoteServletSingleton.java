@@ -1,9 +1,9 @@
 package by.it_academy.jd2.MK_JD2_90_22.vote.servlets.singletone;
 
 import by.it_academy.jd2.MK_JD2_90_22.vote.core.dto.VoteDto;
-import by.it_academy.jd2.MK_JD2_90_22.vote.service.vote.AboutService;
-import by.it_academy.jd2.MK_JD2_90_22.vote.service.vote.TopArtistService;
-import by.it_academy.jd2.MK_JD2_90_22.vote.service.vote.TopGenreService;
+import by.it_academy.jd2.MK_JD2_90_22.vote.service.vote.controllert.html.AboutService;
+import by.it_academy.jd2.MK_JD2_90_22.vote.service.vote.controllert.html.TopArtistService;
+import by.it_academy.jd2.MK_JD2_90_22.vote.service.vote.controllert.html.TopGenreService;
 import by.it_academy.jd2.MK_JD2_90_22.vote.service.singleton.VoteSingleton;
 
 import javax.servlet.ServletException;

@@ -1,7 +1,7 @@
 package by.it_academy.jd2.MK_JD2_90_22.vote.servlets.voteServlet;
 
 import by.it_academy.jd2.MK_JD2_90_22.vote.core.dto.VoteDto;
-import by.it_academy.jd2.MK_JD2_90_22.vote.service.vote.VoteService2;
+import by.it_academy.jd2.MK_JD2_90_22.vote.service.vote.controllert.html.VoteService2;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
