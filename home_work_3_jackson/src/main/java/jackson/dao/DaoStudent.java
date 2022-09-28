@@ -28,4 +28,11 @@ public class DaoStudent implements IDaoStudent {
     public static DaoStudent getInstance() {
         return instance;
     }
+
+    /*@Override
+    public String toString() {
+        return "DaoStudent{" +
+                "student=" + student +
+                '}';
+    }*/
 }
