@@ -17,6 +17,7 @@ public class Passport {
     private String id;
     private String idCitizen;
     private String address;
+    private String svid;
     @JsonFormat(shape = JsonFormat.Shape.NUMBER_INT)
     private LocalDate createDate;
 
